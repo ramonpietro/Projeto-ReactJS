@@ -15,14 +15,17 @@ function App() {
 
   async function handleAddRepository() {
     // TODO
-     const response = await api.post('/repositories', {
-      title: 'Prog Web',
-      url: 'ufopa.edu.br',
-      techs: ['Python', 'Node.JS', 'ReactJS'],
-    })
-
-    setRepositories( [...repositories, response.data ] );
-
+    try {
+      const response = await api.post('/repositories', {
+        title: 'Prog Web',
+        url: 'ufopa.edu.br',
+        techs: ['Python', 'Node.JS', 'ReactJS']
+      })
+      setRepositories([...repositories, response.data]);
+      console.log('Repositório adicionado')
+    } catch(error) {
+      console.log('Erro ao adicionar repositório.', error)
+    }
   }
 
   async function handleRemoveRepository(id) {
